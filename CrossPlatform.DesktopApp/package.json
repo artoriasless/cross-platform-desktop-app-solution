@@ -1,0 +1,15 @@
+{
+  "name": "cross-platform.desktop-app",
+  "version": "1.0.0",
+  "description": "cross platform application, based on Electron",
+  "homepage": "https://github.com/artoriasless/cross-platform-desktop-app-solution",
+  "main": "index.js",
+  "author": {
+    "email": "tangjianyi1993@live.com",
+    "name": "Artoriasless"
+  },
+  "scripts": {
+  },
+  "devDependencies": {
+  }
+}
