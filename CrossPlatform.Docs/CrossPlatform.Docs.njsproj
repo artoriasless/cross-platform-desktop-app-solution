@@ -2,15 +2,14 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <Name>CrossPlatform.DesktopApp</Name>
-    <RootNamespace>CrossPlatform.DesktopApp</RootNamespace>
-    <SaveNodeJsSettingsInProjectFile>False</SaveNodeJsSettingsInProjectFile>
+    <Name>CrossPlatform.Docs</Name>
+    <RootNamespace>CrossPlatform.Docs</RootNamespace>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>b3db2ff9-5b40-4b95-96f0-d55821cdb6e1</ProjectGuid>
+    <ProjectGuid>5a74f17e-8cb3-4a79-9f90-e86ca80249a5</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>
     </StartupFile>
@@ -22,7 +21,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <EnableTypeScript>true</EnableTypeScript>
-    <StartWebBrowser>False</StartWebBrowser>
+    <StartWebBrowser>false</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,61 +30,16 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include=".npmrc">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="config\config.build.js" />
-    <Content Include="config\config.runtime.js" />
-    <Content Include="index.js" />
-    <Content Include="package.json" />
-    <Content Include="scripts\after-compile\linux.js" />
-    <Content Include="scripts\after-compile\mac.js" />
-    <Content Include="scripts\after-compile\win.js" />
-    <Content Include="scripts\build-main.js" />
-    <Content Include="scripts\build-render.js" />
-    <Content Include="scripts\build-app.js" />
-    <Content Include="scripts\clean.js" />
-    <Content Include="scripts\pre-compile\linux.js" />
-    <Content Include="scripts\pre-compile\mac.js" />
-    <Content Include="scripts\pre-compile\win.js" />
-    <Content Include="scripts\release.js" />
-    <Content Include="scripts\utils\backup-and-gen-build-pkg.js" />
-    <Content Include="scripts\utils\check-build-env.js" />
-    <Content Include="scripts\utils\check-dev-env.js" />
-    <Content Include="scripts\utils\logger.js" />
-    <Content Include="scripts\watch-main.js" />
-    <Content Include="scripts\watch-render.js" />
-    <Content Include="src\webpack.config.build.js" />
-    <Content Include="src\webpack.config.dev.js" />
-    <Content Include="src\webpack.config.default.js" />
-    <Content Include="test\dll-bridge-test.js" />
-    <Content Include="tsconfig.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="config\" />
-    <Folder Include="resources\icons\linux\icons\" />
-    <Folder Include="src\main-process\dll-bridge\" />
-    <Folder Include="test\" />
-    <Folder Include="resources\" />
-    <Folder Include="resources\icons\" />
-    <Folder Include="resources\icons\mac\" />
-    <Folder Include="resources\icons\linux\" />
-    <Folder Include="resources\icons\win\" />
-    <Folder Include="scripts\after-compile\" />
-    <Folder Include="scripts\utils\" />
-    <Folder Include="scripts\pre-compile\" />
-    <Folder Include="src\" />
-    <Folder Include="scripts\" />
-    <Folder Include="src\main-process\" />
-    <Folder Include="src\render-process\" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="src\main-process\dll-bridge\index.ts" />
-    <TypeScriptCompile Include="src\main-process\dll-bridge\linux-helper.ts" />
-    <TypeScriptCompile Include="src\main-process\dll-bridge\mac-helper.ts" />
-    <TypeScriptCompile Include="src\main-process\dll-bridge\win-helper.ts" />
-    <TypeScriptCompile Include="src\main-process\app.ts" />
-    <TypeScriptCompile Include="src\render-process\home.tsx" />
+    <Content Include="develop-env-for-linux.md" />
+    <Content Include="develop-env-for-linux_zh.md" />
+    <Content Include="develop-env-for-mac.md" />
+    <Content Include="develop-env-for-mac_zh.md" />
+    <Content Include="develop-env-for-win.md" />
+    <Content Include="develop-env-for-win_zh.md" />
+    <Content Include="electron-config-need-pay-attention.md" />
+    <Content Include="electron-config-need-pay-attention_zh.md" />
+    <Content Include="tips.md" />
+    <Content Include="tips_zh.md" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

@@ -1,15 +1,43 @@
 {
   "name": "cross-platform.desktop-app",
+  "productName": "CrossPlatformDesktopApp",
   "version": "1.0.0",
   "description": "cross platform application, based on Electron",
   "homepage": "https://github.com/artoriasless/cross-platform-desktop-app-solution",
   "main": "index.js",
+  "license": "MIT",
   "author": {
     "email": "tangjianyi1993@live.com",
     "name": "Artoriasless"
   },
   "scripts": {
+    "build": "node scripts/clean.js && node scripts/build-render.js && node scripts/build-main.js && node scripts/build-app.js",
+    "clean": "node scripts/clean.js",
+    "release": "node scripts/release.js",
+    "build:render": "node scripts/build-render.js",
+    "build:main": "node scripts/build-main.js",
+    "build:app": "node scripts/build-app.js",
+    "watch:render": "node scripts/watch-render.js",
+    "watch:main": "node scripts/watch-main.js"
+  },
+  "dependencies": {
+    "electron-edge-js": "^31.0.0"
   },
   "devDependencies": {
+    "edge-js": "^22.0.0",
+    "electron": "22.3.25",
+    "electron-builder": "^23.0.0",
+    "electron-compile": "^6.0.0",
+    "electron-rebuild": "^3.0.0",
+    "eslint": "^7.0.0",
+    "typescript": "^5.0.0",
+    "webpack": "^5.0.0",
+    "webpack-dev-server": "^4.0.0"
+  },
+  "resolutions": {
+    "electron": "22.3.25"
+  },
+  "engines": {
+    "node": "=16.17.1"
   }
 }

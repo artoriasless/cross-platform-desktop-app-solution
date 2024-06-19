@@ -1,2 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using CrossPlatform.LibTest;
+
+#region SystemUtils
+SystemUtilsTester systemUtilsTester = new();
+
+systemUtilsTester.Run();
+#endregion

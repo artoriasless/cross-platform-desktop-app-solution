@@ -1,6 +1,8 @@
 # cross-platform-desktop-app-solution
 
 > [README 中文](./README_zh.md)
+>
+> this repo has locked the main deps version: *`electron@22.3.25`*, *`node@16.17.1`*, so that you can keep the **dev-env** and **runtime-env** consistent as much as possible.
 
 after considering various factors(capability in code development, app develop time, cost of code maintenance), have derived the best practices for developing cross-platform desktop applications.
 
@@ -32,3 +34,9 @@ after considering various factors(capability in code development, app develop ti
 4. replace **`app name`**、**`app icon`** etc. in **CrossPlatform.DesktopApp**
 5. add class library if needed, then publish in **CrossPlatform.Library**
 6. build and publish **CrossPlatform.DesktopApp**
+
+## Tips
+1. [electron config detail need pay attention](./CrossPlatform.Docs/electron-config-need-pay-attention.md))
+2. [develop environment for **Windows OS**](./CrossPlatform.Docs/develop-env-for-win.md)
+3. [develop environment for **Mac OS**](./CrossPlatform.Docs/develop-env-for-mac.md)
+4. [develop environment for **Linux-based OS**](./CrossPlatform.Docs/develop-env-for-linux.md)

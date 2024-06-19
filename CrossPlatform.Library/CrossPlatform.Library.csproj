@@ -4,6 +4,19 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Configurations>Release;Debug</Configurations>
+    <BaseOutputPath></BaseOutputPath>
+    <PackageOutputPath></PackageOutputPath>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <Target Name="ArchiveDLL" AfterTargets="AfterBuild">
+    <ItemGroup>
+      <BuiltFiles Include="$(OutputPath)**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(BuiltFiles)" DestinationFolder="..\CrossPlatform.DesktopApp\dotnet-dll\%(RecursiveDir)" SkipUnchangedFiles="true" />
+  </Target>
 </Project>
