@@ -1,1 +1,17 @@
-{}
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "strict": true,
+    "allowJs": false,
+    "declaration": true,
+    "declarationDir": "types",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "paths": {
+      "*": ["./node_modules/*"]
+    },
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules", "scripts", "config", "main-process", "render-process"]
+}

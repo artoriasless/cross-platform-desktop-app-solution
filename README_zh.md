@@ -6,6 +6,52 @@
 
 综合多方因素（代码开发能力、应用开发周期、代码维护成本），得到的最佳实践，用于开发跨端桌面端应用
 
+## 使用
+
+### 本地开发
+1. 构建 dotnet 类库
+	```shell
+	cd CrossPlatform.Library
+	dotnet build
+	```
+2. 安装 electron 应用依赖
+	```shell
+	cd CrossPlatform.DesktopApp
+	yarn install
+	```
+3. 在 electron 应用中启动 webpack dev server 实时构建渲染进程资源
+	```shell
+	cd CrossPlatform.DesktopApp
+	npm run watch:render
+	```
+4. 在 electron 应用中启动 tsc watch 实时构建主进程资源
+	```shell
+	cd CrossPlatform.DesktopApp
+	npm run watch:main
+	```
+5. 启动 electron 应用
+	```shell
+	cd CrossPlatform.DesktopApp
+	npm dev
+	```
+
+### 本地构建
+1. 构建 dotnet 类库
+	```shell
+	cd CrossPlatform.Library
+	dotnet build
+	```
+2. 安装 electron 依赖
+	```shell
+	cd CrossPlatform.DesktopApp
+	yarn install
+	```
+3. 构建 electron 应用
+	```shell
+	cd CrossPlatform.DesktopApp
+	npm run build
+	```
+
 ## 仓库内容
 
 + **CrossPlatform.DesktopApp**

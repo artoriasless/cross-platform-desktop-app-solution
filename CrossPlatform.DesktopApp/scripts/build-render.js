@@ -1,1 +1,1 @@
-console.info();
+require('../src/webpack.prod');

@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "types": ["react", "react-dom"],
+    "outDir": "./render-process"
+  },
+  "include": ["src/render-process/**/*"]
+}

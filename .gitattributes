@@ -1,0 +1,11 @@
+# 自动调整换行符为 LF
+* text=auto eol=lf
+
+# 强制特定类型文件为 UTF-8 编码
+*.cs text=UTF-8
+*.html text=UTF-8
+*.js text=UTF-8
+*.ts text=UTF-8
+*.less text=UTF-8
+*.json text=UTF-8
+*.md text=UTF-8

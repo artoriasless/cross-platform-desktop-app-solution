@@ -6,6 +6,52 @@
 
 after considering various factors(capability in code development, app develop time, cost of code maintenance), have derived the best practices for developing cross-platform desktop applications.
 
+## Usage
+
+### Develop In Local
+1. build dotnet library
+	```shell
+	cd CrossPlatform.Library
+	dotnet build
+	```
+2. install electron app deps
+	```shell
+	cd CrossPlatform.DesktopApp
+	yarn install
+	```
+3. start webpack dev server in electron app
+	```shell
+	cd CrossPlatform.DesktopApp
+	npm run watch:render
+	```
+4. start tsc watch in electron app
+	```shell
+	cd CrossPlatform.DesktopApp
+	npm run watch:main
+	```
+5. start electron app
+	```shell
+	cd CrossPlatform.DesktopApp
+	npm dev
+	```
+
+### Build In Local
+1. build dotnet library
+	```shell
+	cd CrossPlatform.Library
+	dotnet build
+	```
+2. install electron deps
+	```shell
+	cd CrossPlatform.DesktopApp
+	yarn install
+	```
+3. build electron app
+	```shell
+	cd CrossPlatform.DesktopApp
+	npm run build
+	```
+
 ## Repo Contents
 
 + **CrossPlatform.DesktopApp**

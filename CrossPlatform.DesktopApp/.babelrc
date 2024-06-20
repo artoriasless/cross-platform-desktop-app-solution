@@ -1,0 +1,20 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions", // 最近2个版本的浏览器
+            "not dead", // 排除不再被维护的浏览器版本
+            "> 0.25%", // 全球使用率超过 0.25% 的浏览器
+            "ie >= 11" // 支持 IE11 及以上版本
+          ]
+        }
+      }
+    ],
+    "@babel/preset-react",
+    "@babel/preset-typescript"
+  ],
+  "plugins": ["@babel/transform-runtime", "@babel/plugin-proposal-optional-chaining"]
+}

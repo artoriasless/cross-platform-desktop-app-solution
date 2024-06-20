@@ -1,0 +1,11 @@
+{
+  "delay": 2000,
+  "restartable": "rs",
+  "ignore": [ ".git", ".gitignore", ".editorconfig", ".eslintignore", ".eslintrc.json", "node_modules/**/node_modules", "package.json" ],
+  "verbose": true,
+  "execMap": {},
+  "watch": [ "config", "resources", "main-process", "render-process", "dotnet-dll", "./main.js" ],
+  "env": {},
+  "ext": "css js json html otf ttf png jpg jpeg gif svg",
+  "exec": "electron ./main.js"
+}

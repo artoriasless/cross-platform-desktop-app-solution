@@ -31,19 +31,34 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include=".npmrc">
-      <SubType>Code</SubType>
-    </Content>
+    <Content Include=".babelrc" />
+    <Content Include=".editorconfig" />
+    <Content Include=".eslintignore" />
+    <Content Include=".eslintrc.json" />
+    <Content Include=".npmrc" />
+    <Content Include=".prettierrc" />
+    <Content Include=".yarnrc" />
     <Content Include="config\config.build.js" />
     <Content Include="config\config.runtime.js" />
-    <Content Include="index.js" />
+    <Content Include="main.js" />
+    <Content Include="nodemon.json" />
     <Content Include="package.json" />
+    <Content Include="resources\icon-linux\icon_128x128.png" />
+    <Content Include="resources\icon-linux\icon_16x16.png" />
+    <Content Include="resources\icon-linux\icon_256x256.png" />
+    <Content Include="resources\icon-linux\icon_32x32.png" />
+    <Content Include="resources\icon-linux\icon_48x48.png" />
+    <Content Include="resources\icon-linux\icon_512x512.png" />
+    <Content Include="resources\icon-linux\icon_64x64.png" />
+    <Content Include="resources\icon-mac\app.icns" />
+    <Content Include="resources\icon-win\app.ico" />
+    <Content Include="resources\logo.png" />
     <Content Include="scripts\after-compile\linux.js" />
     <Content Include="scripts\after-compile\mac.js" />
     <Content Include="scripts\after-compile\win.js" />
+    <Content Include="scripts\build-app.js" />
     <Content Include="scripts\build-main.js" />
     <Content Include="scripts\build-render.js" />
-    <Content Include="scripts\build-app.js" />
     <Content Include="scripts\clean.js" />
     <Content Include="scripts\pre-compile\linux.js" />
     <Content Include="scripts\pre-compile\mac.js" />
@@ -53,38 +68,54 @@
     <Content Include="scripts\utils\check-build-env.js" />
     <Content Include="scripts\utils\check-dev-env.js" />
     <Content Include="scripts\utils\logger.js" />
-    <Content Include="scripts\watch-main.js" />
     <Content Include="scripts\watch-render.js" />
-    <Content Include="src\webpack.config.build.js" />
-    <Content Include="src\webpack.config.dev.js" />
-    <Content Include="src\webpack.config.default.js" />
+    <Content Include="src\index.html" />
+    <Content Include="src\render-process\common.less">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\render-process\home-page\index.less">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\webpack.config.js" />
+    <Content Include="src\webpack.dev.js" />
+    <Content Include="src\webpack.prod.js" />
     <Content Include="test\dll-bridge-test.js" />
     <Content Include="tsconfig.json" />
+    <Content Include="tsconfig.main.json" />
+    <Content Include="tsconfig.render.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="config\" />
-    <Folder Include="resources\icons\linux\icons\" />
-    <Folder Include="src\main-process\dll-bridge\" />
-    <Folder Include="test\" />
     <Folder Include="resources\" />
-    <Folder Include="resources\icons\" />
-    <Folder Include="resources\icons\mac\" />
-    <Folder Include="resources\icons\linux\" />
-    <Folder Include="resources\icons\win\" />
-    <Folder Include="scripts\after-compile\" />
-    <Folder Include="scripts\utils\" />
-    <Folder Include="scripts\pre-compile\" />
-    <Folder Include="src\" />
+    <Folder Include="resources\icon-linux\" />
+    <Folder Include="resources\icon-mac\" />
+    <Folder Include="resources\icon-win\" />
     <Folder Include="scripts\" />
+    <Folder Include="scripts\after-compile\" />
+    <Folder Include="scripts\pre-compile\" />
+    <Folder Include="scripts\utils\" />
+    <Folder Include="src\" />
     <Folder Include="src\main-process\" />
+    <Folder Include="src\main-process\constants\" />
+    <Folder Include="src\main-process\dll-bridge\" />
+    <Folder Include="src\main-process\interfaces\" />
+    <Folder Include="src\main-process\utils\" />
     <Folder Include="src\render-process\" />
+    <Folder Include="src\render-process\home-page\" />
+    <Folder Include="test\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\main-process\app.ts" />
+    <TypeScriptCompile Include="src\main-process\constants\app-config.ts" />
+    <TypeScriptCompile Include="src\main-process\constants\index.ts" />
+    <TypeScriptCompile Include="src\main-process\constants\main-window-url.ts" />
     <TypeScriptCompile Include="src\main-process\dll-bridge\index.ts" />
     <TypeScriptCompile Include="src\main-process\dll-bridge\linux-helper.ts" />
     <TypeScriptCompile Include="src\main-process\dll-bridge\mac-helper.ts" />
     <TypeScriptCompile Include="src\main-process\dll-bridge\win-helper.ts" />
-    <TypeScriptCompile Include="src\main-process\app.ts" />
+    <TypeScriptCompile Include="src\main-process\interfaces\app-config.ts" />
+    <TypeScriptCompile Include="src\main-process\interfaces\index.ts" />
+    <TypeScriptCompile Include="src\main-process\utils\index.ts" />
     <TypeScriptCompile Include="src\render-process\home.tsx" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />

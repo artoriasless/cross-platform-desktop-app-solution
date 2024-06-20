@@ -239,11 +239,13 @@ CrossPlatform.DesktopApp/package-lock.json
 CrossPlatform.DesktopApp/package.build.json
 CrossPlatform.DesktopApp/package.default.json
 CrossPlatform.DesktopApp/yarn.lock
-# dotnet dll ÊµÊ±¹¹½¨
+# dotnet dll å®æ—¶æ„å»º
 CrossPlatform.DesktopApp/dotnet-dll
-# webpack ¹¹½¨Ç°¶Ë×ÊÔ´
+# webpack æ„å»ºå‰ç«¯èµ„æº
 CrossPlatform.DesktopApp/render-process
-# tsc ±àÒë ts Ö÷½ø³ÌÔ´Âë
+# tsc ç¼–è¯‘ ts ä¸»è¿›ç¨‹æºç 
 CrossPlatform.DesktopApp/main-process
-# ¹¹½¨Ó¦ÓÃµÄ½á¹û
+# tsc ç¼–è¯‘ ts ç”Ÿæˆçš„ç±»å‹æ–‡ä»¶
+CrossPlatform.DesktopApp/types
+# æ„å»ºåº”ç”¨çš„ç»“æœ
 CrossPlatform.DesktopApp/dist
