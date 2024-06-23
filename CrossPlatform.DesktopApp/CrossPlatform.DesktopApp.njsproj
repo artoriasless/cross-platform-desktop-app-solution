@@ -58,8 +58,12 @@
     <Content Include="scripts\after-compile\win.js" />
     <Content Include="scripts\build-app.js" />
     <Content Include="scripts\build-main.js" />
+    <Content Include="scripts\build-prework\linux.js" />
+    <Content Include="scripts\build-prework\mac.js" />
+    <Content Include="scripts\build-prework\win.js" />
     <Content Include="scripts\build-render.js" />
     <Content Include="scripts\clean.js" />
+    <Content Include="scripts\constants.js" />
     <Content Include="scripts\pre-compile\linux.js" />
     <Content Include="scripts\pre-compile\mac.js" />
     <Content Include="scripts\pre-compile\win.js" />
@@ -92,6 +96,7 @@
     <Folder Include="resources\icon-win\" />
     <Folder Include="scripts\" />
     <Folder Include="scripts\after-compile\" />
+    <Folder Include="scripts\build-prework\" />
     <Folder Include="scripts\pre-compile\" />
     <Folder Include="scripts\utils\" />
     <Folder Include="src\" />
