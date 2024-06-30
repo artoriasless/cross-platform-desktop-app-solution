@@ -1,4 +1,7 @@
-﻿namespace CrossPlatform.Library
+﻿using System;
+using System.Runtime;
+
+namespace CrossPlatform.Library
 {
     public class SystemUtils
     {

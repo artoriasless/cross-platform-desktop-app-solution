@@ -7,11 +7,13 @@ const logger = require('./utils/logger');
 const args = process.argv.slice(2);
 const isCleanRender = args.includes('--render');
 const isCleanMain = args.includes('--main');
+const isCleanDLL = args.includes('--dll');
 const isCleanDist = args.includes('--dist');
 
 const baseDir = path.join(__dirname, '..') + path.sep;
 const renderDir = path.join(__dirname, '../render-process');
 const mainDir = path.join(__dirname, '../main-process');
+const dllDir = path.join(__dirname, '../dotnet-dll');
 const distDir = path.join(__dirname, '../dist');
 
 const cleanRender = () => {
@@ -38,6 +40,18 @@ const cleanMain = () => {
 
   logger.lineBreak();
 };
+const cleanDLL = () => {
+  logger.info(`DLL 库资源目录: ${dllDir.replace(baseDir, '')}`);
+  logger.info('开始清理已构建 DLL 库...');
+
+  if (fs.existsSync(dllDir)) {
+    fs.rmSync(dllDir, { recursive: true });
+  }
+
+  logger.info('清理完成');
+
+  logger.lineBreak();
+};
 const cleanDist = () => {
   logger.info(`应用构建目录: ${distDir.replace(baseDir, '')}`);
   logger.info('开始清理应用构建资源...');
@@ -53,13 +67,17 @@ const cleanDist = () => {
 
 logger.clearConsole();
 
-if (isCleanRender || isCleanMain || isCleanDist) {
+if (isCleanRender || isCleanMain || isCleanDLL || isCleanDist) {
   if (isCleanRender) {
     cleanRender();
   }
 
   if (isCleanMain) {
     cleanMain();
+  }
+
+  if (isCleanDLL) {
+    cleanDLL();
   }
 
   if (isCleanDist) {
@@ -69,5 +87,6 @@ if (isCleanRender || isCleanMain || isCleanDist) {
   // 默认不指定，则全部清理
   cleanRender();
   cleanMain();
+  cleanDLL();
   cleanDist();
 }

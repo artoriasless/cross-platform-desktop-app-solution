@@ -10,7 +10,7 @@ if (!!container) {
   const root = createRoot(container);
 
   const Render = () => {
-    return <div className="content">Cross Platform App</div>;
+    return <div className='content'>Cross Platform Application</div>;
   };
 
   root.render(<Render />);

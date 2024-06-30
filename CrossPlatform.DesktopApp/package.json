@@ -11,15 +11,21 @@
     "name": "Artoriasless"
   },
   "scripts": {
-    "build": "node scripts/clean.js && node scripts/build-render.js && node scripts/build-main.js && node scripts/build-app.js",
+    "build": "npm run clean && npm run build:render && npm run build:main && npm run build:dll && npm run build:app",
     "clean": "node scripts/clean.js",
     "release": "node scripts/release.js",
     "watch:render": "node scripts/clean.js --render && node src/webpack.dev.js",
     "watch:main": "node scripts/clean.js --main && npx tsc -p tsconfig.main.json -w",
+    "build:render": "node scripts/clean.js --render && node src/webpack.prod.js",
+    "build:main": "node scripts/clean.js --main && npx tsc -p tsconfig.main.json",
+    "build:dll": "node scripts/clean.js --dll && node scripts/build-dll.js",
+    "build:app": "node scripts/build-app.js",
+    "test": "node test/index.js",
     "dev": "cross-env NODE_ENV=development nodemon",
     "start": "electron ."
   },
   "dependencies": {
+    "edge-js": "^22.0.0",
     "electron-edge-js": "^31.0.0",
     "lodash": "^4.17.21",
     "log4js": "^6.9.1"
@@ -45,7 +51,6 @@
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.0",
     "deasync": "^0.1.30",
-    "edge-js": "^22.0.0",
     "electron": "22.3.25",
     "electron-builder": "^23.0.0",
     "electron-compile": "^6.0.0",

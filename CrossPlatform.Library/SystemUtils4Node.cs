@@ -1,4 +1,8 @@
-﻿namespace CrossPlatform.Library
+﻿using System;
+using System.Runtime;
+using System.Threading.Tasks;
+
+namespace CrossPlatform.Library
 {
     public class SystemUtils4Node
     {

@@ -84,6 +84,7 @@
     <Content Include="src\webpack.dev.js" />
     <Content Include="src\webpack.prod.js" />
     <Content Include="test\dll-bridge-test.js" />
+    <Content Include="test\index.js" />
     <Content Include="tsconfig.json" />
     <Content Include="tsconfig.main.json" />
     <Content Include="tsconfig.render.json" />
