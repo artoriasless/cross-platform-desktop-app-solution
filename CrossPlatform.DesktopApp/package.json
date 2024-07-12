@@ -25,7 +25,6 @@
     "start": "electron ."
   },
   "dependencies": {
-    "edge-js": "^22.0.0",
     "electron-edge-js": "^29.0.0",
     "lodash": "^4.17.21",
     "log4js": "^6.9.1"
@@ -51,6 +50,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.0",
     "deasync": "^0.1.30",
+    "edge-js": "^22.0.0",
     "electron": "22.3.25",
     "electron-builder": "^23.6.0",
     "eslint": "^7.0.0",
