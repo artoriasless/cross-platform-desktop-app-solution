@@ -23,7 +23,7 @@
 
 > in this repo, i use electron-edge-js@^29.0.0 because the used electron version is 22.3.25
 > 
-> **`if you use electron@23.x, you need to upgrade electron-edge-js at least 30.x`**
+> **`if you use electron@23.x or later, you need to upgrade electron-edge-js at least 30.x`**
 
 ## **`edge-js`** invoke **`.net core`** DLL error
 
