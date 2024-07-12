@@ -2,6 +2,29 @@
 
 > 开发过程中遇到的一些小问题，记录一下
 
+## Electron -> Nodejs 版本匹配列表
+
+> 由于本项目使用的是 electron@22.3.25， 所以表格中展示的 electron 版本只考虑从 22.x 之后的
+
+| Electron        | Node.Js          |
+| --------------- | ---------------- |
+| Electron 22.x   | v16.17.1         |
+| Electron 23.x   | v18.12.1         |
+| Electron 24.x   | v18.14.0         |
+| Electron 25.x   | v18.15.0         |
+| Electron 26.x   | v18.16.1         |
+| Electron 27.x   | v18.17.1         |
+| Electron 28.x   | v18.18.2         |
+| Electron 29.x   | v20.9.0          |
+| Electron 30.1.x | v20.14.0         |
+| Electron 31.x   | v20.14.0         |
+
+## electron-edge-js 版本
+
+> 此项目中使用 electron@22.3.25， 所以对应的 electron-edge-js 使用版本 ^29.0.0
+> 
+> **`如果你需要使用 electron@23.x 或更高版本， 升级 electron-edge-js 的版本至少到 30.x`**
+
 ## **`edge-js`** 调用 **`.net core`** DLL 报错
 
 1. 由于部分客户端电脑缺少 **`.net core 运行时`**，所以你需要把你的 **`.net core 库`** 发布为 **独立** 版本
