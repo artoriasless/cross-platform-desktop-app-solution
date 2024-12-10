@@ -12,7 +12,7 @@ import { defaultAppConfig, mainWindowUrl } from './constants';
 const baseDir = process.cwd();
 const runtimeConfig = require(path.join(baseDir, 'config/config.runtime.js')) as IAppConfig;
 
-export class AppBase extends EventEmitter {
+class AppBase extends EventEmitter {
   private isDev: boolean = false;
   private config: IAppConfig = cloneDeep(defaultAppConfig);
 
@@ -69,6 +69,6 @@ export class AppBase extends EventEmitter {
   }
 }
 
-export default {
-  AppBase,
-};
+module.exports = AppBase;
+
+export default AppBase;

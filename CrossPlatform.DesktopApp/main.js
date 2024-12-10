@@ -1,4 +1,4 @@
-const { AppBase } = require('./main-process/app');
+const AppBase = require('./main-process/app');
 
 class App extends AppBase {
   constructor() {
