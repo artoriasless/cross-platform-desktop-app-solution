@@ -12,6 +12,8 @@ const archAliasDirMap: Map<string, string> = new Map([
   ['arm64', 'arm64'],
 ]);
 
+const edge = require('electron-edge-js');
+
 /**
  * 针对 electron 构建出应用时启用 asar 压缩的场景，获取真正的包目录地址 app.asar => app.asar.unpacked
  *
@@ -72,12 +74,6 @@ const dllBridgeInvoke = <TResult>(relativeDll: string, className: string, method
 
       const dllPath = getDllPath(relativeDll);
 
-      // 根据是否是 electron 环境，加载 edge-js 或者 electron-edge-js
-      const edge = (() => {
-        if (!!process.versions && !!process.versions.electron) return require('electron-edge-js');
-
-        return require('edge-js');
-      })();
       const driver = edge.func({
         assemblyFile: dllPath,
         typeName: className,
@@ -87,10 +83,6 @@ const dllBridgeInvoke = <TResult>(relativeDll: string, className: string, method
       const paramIn = params === undefined || params === null ? {} : params;
 
       driver(JSON.stringify(paramIn), (err: Error, res: TResult) => {
-        console.info('+++++++++++++++++++++++++');
-        console.info(res, err);
-        console.info('+++++++++++++++++++++++++');
-
         if (err) {
           reject(err);
 

@@ -13,6 +13,7 @@ const serveOptions = {
 const compiler = webpack({
   ...config,
   mode: 'development',
+  devtool: 'inline-source-map',
 });
 const server = new webpackDevServer(serveOptions, compiler);
 

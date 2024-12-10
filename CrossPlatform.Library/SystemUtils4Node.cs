@@ -6,7 +6,7 @@ namespace CrossPlatform.Library
 {
     public class SystemUtils4Node
     {
-        public async Task<object> WhatIsTime()
+        public async Task<object> WhatIsTime(dynamic input)
         {
             string result = SystemUtils.WhatIsTime();
 

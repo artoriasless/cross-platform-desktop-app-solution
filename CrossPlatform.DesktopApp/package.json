@@ -25,23 +25,24 @@
     "start": "electron ."
   },
   "dependencies": {
-    "electron-edge-js": "^29.0.0",
+    "@revolist/react-datagrid": "^4.0.0",
+    "electron-edge-js": "^33.0.3",
     "lodash": "^4.17.21",
     "log4js": "^6.9.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.26.0",
     "@babel/plugin-proposal-optional-chaining": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.0.0",
-    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.24.7",
+    "@babel/preset-typescript": "^7.0.0",
     "@types/lodash": "^4.17.5",
     "@types/node": "^20.14.7",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "babel": "^6.0.0",
+    "babel": "^6.23.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-import": "^1.0.0",
     "chalk": "^4.0.0",
@@ -50,10 +51,9 @@
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.0",
     "deasync": "^0.1.30",
-    "edge-js": "^22.0.0",
-    "electron": "22.3.25",
-    "electron-builder": "^23.6.0",
-    "eslint": "^7.0.0",
+    "electron": "29.4.6",
+    "electron-builder": "^25.1.8",
+    "eslint": "^8.0.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^5.6.0",
     "inquirer": "^8.0.0",
@@ -73,9 +73,9 @@
     "webpack-dev-server": "^4.0.0"
   },
   "resolutions": {
-    "electron": "22.3.25"
+    "electron": "29.4.6"
   },
   "engines": {
-    "node": "=16.17.1"
+    "node": "=20.9.0"
   }
 }

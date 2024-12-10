@@ -4,7 +4,12 @@ interface IAppConfig {
   description?: string;
   author?: string;
   email?: string;
-  isSingleInstance?: boolean;
+  size: {
+    width: number;
+    height: number;
+    minWidth: number;
+    minHeight: number;
+  };
 }
 
 export default IAppConfig;

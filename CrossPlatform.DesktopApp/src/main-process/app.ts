@@ -4,6 +4,8 @@ import { EventEmitter } from 'events';
 import { app, BrowserWindow } from 'electron';
 import { cloneDeep, merge } from 'lodash';
 
+import dllBridgeInvoke from './dll-bridge-invoke';
+
 import { IAppConfig } from './interfaces';
 import { defaultAppConfig, mainWindowUrl } from './constants';
 
@@ -51,26 +53,16 @@ export class AppBase extends EventEmitter {
       title: this.config.name,
       icon: this.config.icon,
       center: true,
-      width: 800,
-      height: 600,
-      minWidth: 400,
-      minHeight: 300,
       webPreferences: {
         nodeIntegration: true,
+        // 如果是开发模式，允许加载调试工具
+        devTools: this.isDev,
       },
+      ...this.config.size,
     });
-
-    console.info(this.config);
 
     // 移除窗口菜单
     mainWindow.setMenu(null);
-
-    // 如果是开发模式，加载调试工具
-    if (this.isDev) {
-      mainWindow.webContents.openDevTools({
-        mode: 'detach',
-      });
-    }
 
     // 加载主页
     mainWindow.loadURL(mainWindowUrl);
