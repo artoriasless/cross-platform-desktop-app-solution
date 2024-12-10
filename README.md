@@ -84,7 +84,7 @@ after considering various factors(capability in code development, app develop ti
     }
     ```
 
-3. use **`electron-edge-js`** to invoke(you use **`main-process/dll-bridge-invoke`** directly)
+3. use **`electron-edge-js`** to invoke(you can use **`main-process/dll-bridge-invoke`** directly)
 
     ```typescript
     // relative path , split 【dotnet-dll】 directory and use the rest

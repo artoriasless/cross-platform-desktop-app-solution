@@ -82,6 +82,68 @@
     npm run test
     ```
 
+### 编写一个 C# DLL 方法，并在 electron 中调用
+
+> 以下是建议的方案
+
+1. 使用常规同步写法定义一个类和静态方法（非 async/await 写法）
+
+    ```csharp
+    using System;
+    using System.Runtime;
+
+    namespace CrossPlatform.Library
+    {
+        public class SystemUtils
+        {
+            public static string WhatIsTime()
+            {
+                string now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+                return now;
+            }
+        }
+    }
+    ```
+
+2. 定义一个类以及 async 方法来调用 **`第一步中定义的方法`**
+
+    ```csharp
+    using System;
+    using System.Runtime;
+    using System.Threading.Tasks;
+
+    namespace CrossPlatform.Library
+    {
+        public class SystemUtils4Node
+        {
+            // 注意！ 注意！ 注意！
+            // 建议定义入参，即使你用不到
+            // 主要是为了避免调用报错
+            public async Task<object> WhatIsTime(dynamic input)
+            {
+                string result = SystemUtils.WhatIsTime();
+
+                return result;
+            }
+        }
+    }
+    ```
+
+3. 使用 **`electron-edge-js`** 来调用（可以直接使用封装好的 **`main-process/dll-bridge-invoke`**）
+
+    ```typescript
+    // 相对路径，去掉 【dotnet-dll】 及之前的目录，使用剩下的路径
+    const assemblyPath = 'CrossPlatform.Library.dll';
+    // 建议包含命名空间
+    const className = 'CrossPlatform.Library.SystemUtils4Node';
+    const methodName = 'WhatIsTime';
+
+    dllBridgeInvoke(assemblyPath, className, methodName)
+        .then((res) => console.info('res', res)) // res 2024-12-10 17:09:45.082
+        .catch((err) => console.error('err', err));
+    ```
+
 ### 桌面端应用单测
 
 > **TODO**
