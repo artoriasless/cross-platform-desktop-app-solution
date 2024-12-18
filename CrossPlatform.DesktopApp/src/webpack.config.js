@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // 添加一个入口
 const entry = {
   home: path.resolve(__dirname, './render-process/home.tsx'),
+  appLayout: path.resolve(__dirname, './render-process/app-layout.tsx'),
 };
 
 const createHtmlWebpackPluginList = () => {

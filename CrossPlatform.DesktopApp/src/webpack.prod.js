@@ -28,7 +28,7 @@ webpack(
 
     if (stats.hasWarnings()) {
       console.info(chalk.yellow('\n------------------ 【警告】 ------------------'));
-      process.stdout.write(info.warnings.join('\n') + '\n');
+      process.stdout.write(info.warnings.map(item => item?.message || item).join('\n') + '\n');
     }
 
     console.info(chalk.green('\n------------------ 构建结果 ------------------'));

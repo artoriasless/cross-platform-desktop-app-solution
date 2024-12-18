@@ -12,6 +12,7 @@ const serveOptions = {
 };
 const compiler = webpack({
   ...config,
+  plugins: [...config.plugins.slice(1)],
   mode: 'development',
   devtool: 'inline-source-map',
 });

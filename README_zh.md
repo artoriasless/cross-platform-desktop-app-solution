@@ -36,6 +36,122 @@
     npm run dev
     ```
 
+### 在 Electron 中编写、调用 C# 方法
+
+> 以下为推荐写法
+
+1. 常规写法定义类和静态方法（非 async/await 写法）
+
+    ```csharp
+    using System;
+    using System.Runtime;
+
+    namespace CrossPlatform.Library
+    {
+        public class SystemUtils
+        {
+            public static string WhatIsTime()
+            {
+                string now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+                return now;
+            }
+        }
+    }
+    ```
+
+2. 定义一个类和 async 方法，来调用 **`第一步中定义的方法`** ，专门用于 **`node`** 中调用
+
+    ```csharp
+    using System;
+    using System.Runtime;
+    using System.Threading.Tasks;
+
+    namespace CrossPlatform.Library
+    {
+        public class SystemUtils4Node
+        {
+            // WARN! WARN! WARN!
+            // suggest define the parameter, even you don't need
+            // just to avoid invoke Error
+            public async Task<object> WhatIsTime(dynamic input)
+            {
+                string result = SystemUtils.WhatIsTime();
+
+                return result;
+            }
+        }
+    }
+    ```
+
+3. 使用 **`electron-edge-js`** 调用（你也可以直接使用 **`main-process/dll-bridge-invoke`** 封装过的方法）
+
+    ```typescript
+    // 相对路径，移除 【dotnet-dll】及之前的路径，使用剩下的路径
+    const assemblyPath = 'CrossPlatform.Library.dll';
+    // 建议包含命名空间
+    const className = 'CrossPlatform.Library.SystemUtils4Node';
+    const methodName = 'WhatIsTime';
+
+    dllBridgeInvoke(assemblyPath, className, methodName)
+        .then((res) => console.info('res', res)) // res 2024-12-10 17:09:45.082
+        .catch((err) => console.error('err', err));
+    ```
+
+### 主进程 - 渲染进程通信
+
+> 为了简化逻辑，本项目封装并精简了几个 ipc 通信 API。
+>
+> 避免了广播带来的影响，即 window 或 view 和加载的视图之间是 **`一一绑定的关系`**。
+>
+> 1. invoke / handle -> 对应 **`ipcRenderer.invoke`** 和 **`ipcMain.handle`**
+>
+> 2. on / send -> 对应 **`ipcMain.on`** 、**`ipcRenderer.on`** 和 **`ipcMain.send`** 、 **`ipcRenderer.send`**
+>
+> 项目中定义了 **`Art`** 、**`ArtWin`** 、**`ArtView`** 的概念。
+>
+> 其中 **`Art`** 和 **`ArtView`** 会加载视图，所以具体的事件通信在这两个上。
+>
+> 1. **`Art`** -> 应用基类，管理 **`ArtWin`** ，即管理应用主窗口
+>
+> 2. **`Art`** -> 主窗口类，里面会包含 **`BrowserWindow`** 实例，并且用于管理 **`ArtView`**
+>
+> 3. **`ArtView`** -> 视图类，里面会包含 **`BrowserView`** 实例，在非窗口的场景下使用
+
+```typescript
+// main-process
+const mainWin: ArtWin = new ArtWin({
+    ···
+});
+const connection: IConnection = mainWin.getConnection();
+
+connection.on('art-ipc-evt-1', (evt, payload) => {
+    // payload = 'evt-1-from-render'
+    ···
+});
+connection.send('art-ipc-evt-2', 'evt-2-from-main');
+connection.handle('art-ipc-evt-3', async (evt, payload) => {
+    // payload = 'evt-2-from-render'
+    ···
+
+    return 'evt-3-from-main';
+});
+
+// render-process
+window.ipcClient.send('art-ipc-evt-1', 'evt-1-from-render');
+window.ipcClient.on('art-ipc-evt-2', (evt, payload) => {
+    // payload = 'evt-2-from-main'
+    ···
+});
+window.ipcClient
+    .invoke('art-ipc-evt-3', 'evt-3-from-render')
+    .then(res => {
+        // res = 'evt-3-from-main'
+        ···
+    })
+    .catch(console.error)
+```
+
 ## 仓库内容
 
 -   **CrossPlatform.DesktopApp**

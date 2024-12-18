@@ -60,7 +60,7 @@ after considering various factors(capability in code development, app develop ti
     }
     ```
 
-2. define a class and async method to call **`the method in the step 1`**
+2. define a class and async method to call **`the method in the step 1`** for **`node`**
 
     ```csharp
     using System;
@@ -97,6 +97,60 @@ after considering various factors(capability in code development, app develop ti
         .then((res) => console.info('res', res)) // res 2024-12-10 17:09:45.082
         .catch((err) => console.error('err', err));
     ```
+
+### Main Process - Renderer Process Communication
+
+> To simplify the logic, this project has encapsulated and streamlined several IPC communication APIs.
+>
+> The APIs avoid the impact of broadcasting, meaning the relationship between window or view and their respective loaded views is **`one-to-one binding`**.
+>
+> 1. invoke / handle -> Corresponds to **`ipcRenderer.invoke`** and **`ipcMain`**.handle.
+>
+> 2. on / send -> Corresponds to **`ipcMain.on`** 、**`ipcRenderer.on`** and **`ipcMain.send`** 、 **`ipcRenderer.send`**
+>
+> The project introduces the concepts of **`Art`**, **`ArtWin`**, and **`ArtView`**.
+>
+> Among these, **`ArtWin`** and **`ArtView`** can load views, so specific event communication exists on these two concepts.
+>
+> 1. **`Art`** -> Base class of the application, responsible for managing **`ArtWin`**, i.e., managing the application’s main window.
+>
+> 2. **`ArtWin`** -> Main window class, containing the **`BrowserWindow`** instance, and is used to manage **`ArtView`**.
+>
+> 3. **`ArtView`** -> View class, containing the **`BrowserView`** instance, used in scenarios without an independent window.
+
+```typescript
+// main-process
+const mainWin: ArtWin = new ArtWin({
+    ···
+});
+const connection: IConnection = mainWin.getConnection();
+
+connection.on('art-ipc-evt-1', (evt, payload) => {
+    // payload = 'evt-1-from-render'
+    ···
+});
+connection.send('art-ipc-evt-2', 'evt-2-from-main');
+connection.handle('art-ipc-evt-3', async (evt, payload) => {
+    // payload = 'evt-2-from-render'
+    ···
+
+    return 'evt-3-from-main';
+});
+
+// render-process
+window.ipcClient.send('art-ipc-evt-1', 'evt-1-from-render');
+window.ipcClient.on('art-ipc-evt-2', (evt, payload) => {
+    // payload = 'evt-2-from-main'
+    ···
+});
+window.ipcClient
+    .invoke('art-ipc-evt-3', 'evt-3-from-render')
+    .then(res => {
+        // res = 'evt-3-from-main'
+        ···
+    })
+    .catch(console.error)
+```
 
 ## Repo Contents
 

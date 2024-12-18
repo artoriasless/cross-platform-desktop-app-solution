@@ -9,5 +9,5 @@
     "types": ["react", "react-dom"],
     "outDir": "./render-process"
   },
-  "include": ["src/render-process/**/*"]
+  "include": ["src/render-process/**/*", "src/render-process/global.d.ts"]
 }

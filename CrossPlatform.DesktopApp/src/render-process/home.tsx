@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { AfterEditEvent, BeforeSaveDataDetails, ColumnDataSchemaModel, ColumnRegular, ColumnTemplateProp, RevoGrid, RevoGridCustomEvent, Template } from '@revolist/react-datagrid';
 
 import './common.less';
 import './home-page/index.less';
+import { Event } from 'electron';
 
 interface IDataItem {
   a: string;
@@ -29,9 +30,9 @@ const HeaderCell = (props: ColumnTemplateProp | ColumnDataSchemaModel) => {
 };
 
 const Cell = (props: ColumnTemplateProp | ColumnDataSchemaModel) => {
-  const { prop, value } = props as ColumnDataSchemaModel;
+  const { value } = props as ColumnDataSchemaModel;
 
-  return <div>{value}</div>;
+  return <div style={{ color: 'green' }}>{value}</div>;
 };
 
 const columns: ColumnRegular[] = [
@@ -39,6 +40,7 @@ const columns: ColumnRegular[] = [
     prop: 'a',
     name: 'A',
     columnTemplate: Template(HeaderCell),
+    cellTemplate: Template(Cell),
   },
   {
     prop: 'b',
@@ -108,6 +110,41 @@ if (!!container) {
 
       setDataSource(newData);
     };
+
+    const initEventListener = () => {
+      window.ipcClient.on('art-ipc-test-send', (evt, payload: any) => {
+        console.info('response from main process', payload);
+      });
+
+      setInterval(() => {
+        const random = Math.random();
+
+        console.info('send to main process', random);
+
+        window.ipcClient.send('art-ipc-test-on', {
+          random,
+        });
+      }, 3000);
+
+      setInterval(() => {
+        const random = Math.random();
+
+        console.info('handle to main process', random);
+
+        window.ipcClient
+          .invoke('art-ipc-test-handle', {
+            random,
+          })
+          .then((res: any) => {
+            console.info('invoke response from main process', res);
+          })
+          .catch(console.error);
+      }, 3000);
+    };
+
+    useEffect(() => {
+      initEventListener();
+    }, []);
 
     return (
       <div className='content'>

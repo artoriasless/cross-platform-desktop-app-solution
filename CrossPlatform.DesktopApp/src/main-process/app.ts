@@ -1,23 +1,29 @@
 import path from 'path';
-import { EventEmitter } from 'events';
 
 import { app, BrowserWindow } from 'electron';
 import { cloneDeep, merge } from 'lodash';
 
-import dllBridgeInvoke from './dll-bridge-invoke';
+import { IAppConfig, IArtOpts } from './interfaces';
+import { defaultAppConfig } from './constants';
 
-import { IAppConfig } from './interfaces';
-import { defaultAppConfig, mainWindowUrl } from './constants';
+import { Art, ArtWin } from './core';
 
 const baseDir = process.cwd();
 const runtimeConfig = require(path.join(baseDir, 'config/config.runtime.js')) as IAppConfig;
 
-class AppBase extends EventEmitter {
+const superArtOpts = (appConf?: IAppConfig): IArtOpts => {
+  return {};
+};
+
+class AppBase extends Art {
+  private mainArtWin: ArtWin | null = null;
   private isDev: boolean = false;
   private config: IAppConfig = cloneDeep(defaultAppConfig);
 
-  constructor(appConf?: IAppConfig) {
-    super();
+  public constructor(appConf?: IAppConfig) {
+    const artOpts = superArtOpts(appConf);
+
+    super(artOpts);
 
     if (appConf) {
       this.config = merge(this.config, appConf, runtimeConfig);
@@ -30,15 +36,13 @@ class AppBase extends EventEmitter {
     this.init();
   }
 
-  init() {
+  private init = () => {
     //#region 应用设置
     app.setName(this.config.name || '');
     //#endregion
 
     //#region 事件监听
-    app.on('ready', () => {
-      this.createWindow();
-    });
+    app.on('ready', this.afterReady);
 
     app.on('window-all-closed', () => {
       if (process.platform !== 'darwin') {
@@ -46,27 +50,47 @@ class AppBase extends EventEmitter {
       }
     });
     //#endregion
-  }
+  };
 
-  createWindow() {
-    const mainWindow = new BrowserWindow({
-      title: this.config.name,
-      icon: this.config.icon,
+  private afterReady = () => {
+    this.mainArtWin = this.addWin({
+      name: 'main',
+      title: this.config.name || '',
+      icon: this.config.icon || '',
       center: true,
       webPreferences: {
         nodeIntegration: true,
-        // 如果是开发模式，允许加载调试工具
         devTools: this.isDev,
       },
       ...this.config.size,
     });
 
     // 移除窗口菜单
-    mainWindow.setMenu(null);
+    this.mainArtWin?.win?.setMenu(null);
 
     // 加载主页
-    mainWindow.loadURL(mainWindowUrl);
-  }
+    this.mainArtWin?.win?.loadURL('http://localhost:3000/home.html');
+
+    setTimeout(() => {
+      const secondWin = this.addWin({
+        name: 'secondWin',
+        title: this.config.name || '',
+        icon: this.config.icon || '',
+        center: true,
+        webPreferences: {
+          nodeIntegration: true,
+          devTools: this.isDev,
+        },
+        ...this.config.size,
+      });
+
+      // 移除窗口菜单
+      secondWin?.win?.setMenu(null);
+
+      // 加载主页
+      secondWin?.win?.loadURL('http://localhost:3000/home.html');
+    }, 5000);
+  };
 }
 
 module.exports = AppBase;
