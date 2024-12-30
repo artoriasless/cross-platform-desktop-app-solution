@@ -213,10 +213,8 @@ window.ipcClient
 
 ## Tips
 
-1. [electron config detail need pay attention](./CrossPlatform.Docs/electron-config-need-pay-attention.md))
-2. [develop environment for **Windows OS**](./CrossPlatform.Docs/develop-env-for-win.md)
-3. [develop environment for **Mac OS**](./CrossPlatform.Docs/develop-env-for-mac.md)
-4. [develop environment for **Linux-based OS**](./CrossPlatform.Docs/develop-env-for-linux.md)
+1. [tips](./CrossPlatform.Docs/tips.md)
+2. [electron config detail need pay attention](./CrossPlatform.Docs/electron-config-need-pay-attention.md)
 
 ## Q&A
 

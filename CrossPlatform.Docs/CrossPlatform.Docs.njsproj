@@ -30,12 +30,6 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="develop-env-for-linux.md" />
-    <Content Include="develop-env-for-linux_zh.md" />
-    <Content Include="develop-env-for-mac.md" />
-    <Content Include="develop-env-for-mac_zh.md" />
-    <Content Include="develop-env-for-win.md" />
-    <Content Include="develop-env-for-win_zh.md" />
     <Content Include="electron-config-need-pay-attention.md" />
     <Content Include="electron-config-need-pay-attention_zh.md" />
     <Content Include="tips.md" />

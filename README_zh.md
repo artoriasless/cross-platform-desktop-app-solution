@@ -275,10 +275,8 @@ window.ipcClient
 
 ## 小技巧
 
-1. [需要注意的 electron 配置详细](./CrossPlatform.Docs/electron-config-need-pay-attention_zh.md)
-2. [**Windows OS** 的开发环境](./CrossPlatform.Docs/develop-env-for-win_zh.md)
-3. [**Mac OS** 的开发环境](./CrossPlatform.Docs/develop-env-for-mac_zh.md)
-4. [**基于 Linux 的 OS** 的开发环境](./CrossPlatform.Docs/develop-env-for-linux_zh.md)
+1. [小技巧](./CrossPlatform.Docs/tips_zh.md)
+2. [需要注意的 electron 配置详情](./CrossPlatform.Docs/electron-config-need-pay-attention_zh.md)
 
 ## Q&A
 
