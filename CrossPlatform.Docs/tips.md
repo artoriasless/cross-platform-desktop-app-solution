@@ -159,6 +159,16 @@ sudo make install
         fpm --version
         ```
 
+    6. **【For Linux only】The most crucial step is to declare the use of the system FPM before executing the build script.**
+
+        ```json
+        {
+            "scripts": {
+                "build:linux": "USE_SYSTEM_FPM=true art-bin build linux"
+            }
+        }
+        ```
+
 ### Fixing Build Failures for .NET Core DLLs in Node.js
 
 > When calling C# DLLs in Node.js, the code needs to be compiled.
@@ -190,19 +200,7 @@ sudo make install
     make install
     ```
 
--   Replacing GCC, G++, CC, and CPP (C++) with Clang
-
-    1. Remove the GCC and G++ installed by UOS (usually installed via apt), using sudo apt remove gcc (perform this step after Clang is installed):
-
-    ```shell
-    sudo apt remove gcc
-    sudo apt remove g++
-    sudo apt remove cc
-    sudo apt remove cpp
-    sudo apt remove c++
-    ```
-
-    2. Add symbolic links to point GCC, G++, CC, and C++ to Clang:
+-   Replacing GCC, G++, CC, and CPP (C++) with Clang, Add symbolic links to point GCC, G++, CC, and C++ to Clang:
 
     ```shell
     # Check the location of Clang
@@ -214,6 +212,9 @@ sudo make install
     sudo ln -s /usr/local/bin/clang /usr/local/bin/g++
     sudo ln -s /usr/local/bin/clang /usr/local/bin/cc
     sudo ln -s /usr/local/bin/clang /usr/local/bin/c++
+
+    # Initially attempted to remove gcc, g++, etc., installed via apt, but later on a new UOS system, removing them caused the system to crash
+    # Therefore, it is not recommended to remove the original gcc, g++, etc., and modifying the symlink to change their target is sufficient
     ```
 
 -   Configuring .NET

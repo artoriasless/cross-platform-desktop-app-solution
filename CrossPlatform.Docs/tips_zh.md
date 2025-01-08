@@ -158,6 +158,16 @@ sudo make install
         fpm --version
         ```
 
+    6. **【只针对 linux 下】最关键的一步，在构建的脚本执行前，声明使用系统 fpm**
+
+        ```json
+        {
+            "scripts": {
+                "build:linux": "USE_SYSTEM_FPM=true art-bin build linux"
+            }
+        }
+        ```
+
 ### 修复 nodejs 下构建 .net core DLL 失败的问题
 
 > 在 nodejs 中调用 c# DLL ，是需要把代码编译的
@@ -189,19 +199,7 @@ sudo make install
     make install
     ```
 
--   使用 clang 替换 gcc、g++、cc、cpp（c++）
-
-    1.  移除 UOS 已安装的 gcc、g++ ，一般是 apt 默认安装，通过 sudo apt remove gcc 即可（这一步骤在 clang 安装完成后再做）
-
-    ```shell
-    sudo apt remove gcc
-    sudo apt remove g++
-    sudo apt remove cc
-    sudo apt remove cpp
-    sudo apt remove c++
-    ```
-
-    2. 添加软链，将 gcc、g++、cc、c++ 指向 clang
+-   使用 clang 替换 gcc、g++、cc、cpp（c++），添加软链，将 gcc、g++、cc、c++、cpp 指向 clang
 
     ```shell
     # 查看 clang 所在位置
@@ -213,6 +211,10 @@ sudo make install
     sudo ln -s /usr/local/bin/clang /usr/local/bin/g++
     sudo ln -s /usr/local/bin/clang /usr/local/bin/cc
     sudo ln -s /usr/local/bin/clang /usr/local/bin/c++
+    sudo ln -s /usr/local/bin/clang /usr/local/bin/cpp
+
+    # 最初尝试过移除 apt 安装的 gcc、g++ 等，但是后续在一台新的 UOS 上移除，会导致系统崩溃
+    # 所以不建议移除原 gcc、g++ 等，只用软链修改指向即可
     ```
 
 -   配置 dotnet
